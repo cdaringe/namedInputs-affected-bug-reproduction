@@ -1,0 +1,8 @@
+{
+  "name": "pkg2",
+  "dependencies": {},
+  "main": "index.ts",
+  "scripts": {
+    "build": "echo build"
+  }
+}

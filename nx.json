@@ -1,7 +1,16 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "packageManager": "pnpm",
+  "plugins": [],
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "sharedGlobals": [
+      "{workspaceRoot}/package.json",
+      "{workspaceRoot}/pnpm-lock.yaml"
+    ],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
@@ -11,29 +20,18 @@
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/test-setup.[jt]s"
-    ],
-    "sharedGlobals": []
+    ]
   },
-  "targetDefaults": {
-    "@nx/esbuild:esbuild": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
-    }
-  },
-  "plugins": [
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
+  "release": {
+    "projectsRelationship": "independent",
+    "version": {
+      "conventionalCommits": true
     },
-    {
-      "plugin": "@nx/jest/plugin",
-      "options": {
-        "targetName": "test"
-      },
-      "exclude": ["apps/app1-e2e/**/*"]
+    "projects": [
+      "packages/*"
+    ],
+    "changelog": {
+      "projectChangelogs": true
     }
-  ]
+  }
 }
