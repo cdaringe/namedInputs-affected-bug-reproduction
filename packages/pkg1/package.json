@@ -4,5 +4,11 @@
   "main": "index.ts",
   "scripts": {
     "build": "echo build"
+  },
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "{workspaceRoot}/packages/**/data/mocks/*.json"
+    ]
   }
 }
